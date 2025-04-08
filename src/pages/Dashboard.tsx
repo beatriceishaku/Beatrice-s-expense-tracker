@@ -5,6 +5,8 @@ import BalanceCard from '@/components/dashboard/BalanceCard';
 import IncomeCard from '@/components/dashboard/IncomeCard';
 import ExpenseCard from '@/components/dashboard/ExpenseCard';
 import SpendingChart from '@/components/dashboard/SpendingChart';
+import TransactionLineChart from '@/components/dashboard/TransactionLineChart';
+import IncomeBarChart from '@/components/dashboard/IncomeBarChart';
 import TransactionList from '@/components/transactions/TransactionList';
 
 const Dashboard: React.FC = () => {
@@ -23,6 +25,11 @@ const Dashboard: React.FC = () => {
         <BalanceCard balance={state.balance} />
         <IncomeCard income={state.income} />
         <ExpenseCard expense={state.expense} />
+      </div>
+      
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <TransactionLineChart />
+        <IncomeBarChart />
       </div>
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

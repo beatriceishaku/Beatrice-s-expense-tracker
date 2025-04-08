@@ -9,7 +9,7 @@ interface BalanceCardProps {
 
 const BalanceCard: React.FC<BalanceCardProps> = ({ balance }) => {
   return (
-    <Card className="border-l-4 border-balance shadow-md">
+    <Card className="border-l-4 border-balance bg-blue-50 shadow-md">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-sm font-medium">Total Balance</CardTitle>
         <Wallet className="h-4 w-4 text-balance" />

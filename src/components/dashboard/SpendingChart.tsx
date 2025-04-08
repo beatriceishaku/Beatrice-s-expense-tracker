@@ -2,6 +2,7 @@
 import React, { useMemo } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
 import { useExpense } from '@/context/ExpenseContext';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 const COLORS = [
   '#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8', 
@@ -34,47 +35,56 @@ const SpendingChart: React.FC = () => {
   
   if (chartData.length === 0) {
     return (
-      <div className="p-6 bg-white rounded-lg shadow-md text-center">
-        <h2 className="text-xl font-semibold mb-2">Spending By Category</h2>
-        <p className="text-gray-500">
-          Add expenses to see your spending breakdown.
-        </p>
-      </div>
+      <Card className="shadow-md">
+        <CardHeader>
+          <CardTitle className="text-xl font-semibold">Spending By Category</CardTitle>
+        </CardHeader>
+        <CardContent className="text-center p-6">
+          <p className="text-gray-500">
+            Add expenses to see your spending breakdown.
+          </p>
+        </CardContent>
+      </Card>
     );
   }
   
   return (
-    <div className="p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-xl font-semibold mb-4">Spending By Category</h2>
-      
-      <div className="h-64 md:h-80">
-        <ResponsiveContainer width="100%" height="100%">
-          <PieChart>
-            <Pie
-              data={chartData}
-              cx="50%"
-              cy="50%"
-              labelLine={false}
-              outerRadius={80}
-              fill="#8884d8"
-              dataKey="value"
-              label={({ name, percent }) => `${name} (${(percent * 100).toFixed(0)}%)`}
-            >
-              {chartData.map((entry, index) => (
-                <Cell 
-                  key={`cell-${index}`} 
-                  fill={COLORS[index % COLORS.length]} 
-                />
-              ))}
-            </Pie>
-            <Tooltip 
-              formatter={(value) => [`$${value.toFixed(2)}`, 'Amount']}
-            />
-            <Legend />
-          </PieChart>
-        </ResponsiveContainer>
-      </div>
-    </div>
+    <Card className="shadow-md">
+      <CardHeader>
+        <CardTitle className="text-xl font-semibold">Spending By Category</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="h-64 md:h-80">
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart>
+              <Pie
+                data={chartData}
+                cx="50%"
+                cy="50%"
+                labelLine={false}
+                outerRadius={80}
+                fill="#8884d8"
+                dataKey="value"
+                label={({ name, percent }) => `${name} (${(percent * 100).toFixed(0)}%)`}
+              >
+                {chartData.map((entry, index) => (
+                  <Cell 
+                    key={`cell-${index}`} 
+                    fill={COLORS[index % COLORS.length]} 
+                  />
+                ))}
+              </Pie>
+              <Tooltip 
+                formatter={(value) => {
+                  return [`$${Number(value).toFixed(2)}`, 'Amount'];
+                }}
+              />
+              <Legend />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+      </CardContent>
+    </Card>
   );
 };
 
