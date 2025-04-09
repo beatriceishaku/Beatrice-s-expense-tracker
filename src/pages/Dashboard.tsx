@@ -17,7 +17,7 @@ const Dashboard: React.FC = () => {
       <div>
         <h1 className="text-3xl font-bold">Dashboard</h1>
         <p className="text-gray-500 mt-1">
-          Welcome to Beatrice's financial overview
+          Welcome to your financial overview
         </p>
       </div>
       
